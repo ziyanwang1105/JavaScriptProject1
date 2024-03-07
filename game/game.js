@@ -2,13 +2,13 @@
 class Game{
     constructor(){
         //the hand consist maximum 14 tiles
-        //table consists array of arrays where each individual array is the pong,
+        //meld consists array of arrays where each individual array is the pong,
         // kong, chow display on the table
         //fanName is a dictionary contains all the possible scoring rules in the game
         // and the corresponding score for the combination
         this.hand = [];
         this.maxHand = 14;
-        this.table = [];
+        this.meld = [];
         this.fanName = {};
     }
 
@@ -20,7 +20,7 @@ class Game{
         }
     }
 
-    addTable(arr){
+    addMeld(arr){
 
     }
 

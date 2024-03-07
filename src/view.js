@@ -1,6 +1,7 @@
 class View {
-    constructor(game){
-        this.game = game
+    constructor(hand, meld){
+        this.hand = hand //html element from id hand
+        this.meld = meld //html element from id meld
         this.setupTileSelector()
     }
     setupTileSelector(){
