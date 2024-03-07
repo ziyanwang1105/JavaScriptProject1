@@ -9,14 +9,14 @@ The application will have a page to let user to generate his/her winning hand, b
 ## Functionality & MVPs
 
 In this Mahjong calculator, users will be able to:
--construct their winning hand by choosing the tiles
--have a button to submit the winning hand to calculate the score
--have a setting button to get into a setting interface to customize scoring points rules
--clear the hand
+- construct their winning hand by choosing the tiles
+- have a button to submit the winning hand to calculate the score
+- have a setting button to get into a setting interface to customize scoring points rules
+- clear the hand
 
 In addition, this project will include:
--Detect speical combination of winning hand(eg. seven pairs, Thirteen orphans, etc.)
--Have default setting for some popular Mahjong rules
+- Detect speical combination of winning hand(eg. seven pairs, Thirteen orphans, etc.)
+- Have default setting for some popular Mahjong rules
 
 
 ## Wire Frame
@@ -26,7 +26,7 @@ In addition, this project will include:
 -...
 
 ## Implementation Timeline
--Thursday: Create tile class in JavaScript and create the front end tile selection form
--Friday and weekend: Create game class that includes the winning hand detection function and score calculator
--Monday: Create setting bar for customize scoring rules
--Tuesday: Final touch and bug fix, start creating final proposal
+- Thursday: Create tile class in JavaScript and create the front end tile selection form
+- Friday and weekend: Create game class that includes the winning hand detection function and score calculator
+- Monday: Create setting bar for customize scoring rules
+- Tuesday: Final touch and bug fix, start creating final proposal
