@@ -20,7 +20,7 @@ In addition, this project will include:
 
 
 ## Wire Frame
-![WireFrame](https://wireframe.cc/1MyPGK)
+[https://wireframe.cc/1MyPGK]
 ## Technology, Library, and APIs
 - Dom
 - npm
