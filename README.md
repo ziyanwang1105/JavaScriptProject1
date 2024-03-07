@@ -4,7 +4,7 @@
 
 Mahjong is a tile based game that was developed in the 19th century in China and has spread throughout the world since the early 20th century. Different region got different scoring and playing rules, but they all follow many basic rules. This project is intended to create a general scoring calculator for Mahjong and user can customize them accordingly.
 
-The application will have a page to let user to generate his/her winning hand, by selecting the tiles they have in hand and melds, kong , and chow on the table. Then the calculator is going to generate the score(fan) for winning this hand.
+The application will have a page to let user to generate his/her winning hand, by selecting the tiles they have in hand and meld(pong, kong , and chow) on the table. Then the calculator is going to generate the score(fan) for winning this hand.
 
 ## Functionality & MVPs
 
