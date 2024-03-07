@@ -1,0 +1,29 @@
+{
+  "name": "javascriptproject1",
+  "version": "1.0.0",
+  "description": "## Background",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "webpack --watch --mode=development",
+    "build": "webpack --mode=production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ziyanwang1105/JavaScriptProject1.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ziyanwang1105/JavaScriptProject1/issues"
+  },
+  "homepage": "https://github.com/ziyanwang1105/JavaScriptProject1#readme",
+  "browserslist": [
+    "defaults"
+  ],
+  "dependencies": {
+    "webpack": "^5.90.3",
+    "webpack-cli": "^5.1.4"
+  }
+}

@@ -22,8 +22,8 @@ In addition, this project will include:
 ## Wire Frame
 
 ## Technology, Library, and APIs
--Dom
--...
+- Dom
+- npm
 
 ## Implementation Timeline
 - Thursday: Create tile class in JavaScript and create the front end tile selection form
