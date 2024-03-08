@@ -4,7 +4,22 @@ import View from "./view.js"
 
 const hands= document.querySelector('#hand')
 const melds= document.querySelector('#meld')
+const tiles= [];
+
 document.addEventListener("DOMContentLoaded", () => {
-    // Your code here
-    const v = new View(new Game(), hands, melds);
+  let suits = ['c', 'b', 'd']
+  let honorSuits = ['east', 'south', 'west' ,'north', 'red', 'green', 'white']
+  for(let suit in suits){
+    for(let i = 1; i < 10; i++){
+        let newTile = new Tile(suits[suit], i);
+        tiles.push(newTile);
+    }
+  }
+  for(let honorSuit in honorSuits){
+    let honorTile = new Tile(honorSuits[honorSuit], 0);
+    tiles.push(honorTile);
+  }
+  localStorage.clear();
+  localStorage.setItem("tiles", JSON.stringify(tiles));
+  const v = new View(new Game(), hands, melds, tiles);
   });
