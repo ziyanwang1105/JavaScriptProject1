@@ -1,5 +1,6 @@
 class View {
-    constructor(hand, meld){
+    constructor(game, hand, meld){
+        this.game = game //game object that store and evaluate hand and meld
         this.hand = hand //html element from id hand
         this.meld = meld //html element from id meld
         this.setupTileSelector()
@@ -26,7 +27,7 @@ class View {
         }
         for(let honorSuit in honorSuits){
             let li = document.createElement("li")
-            let tile = `${honorSuits[honorSuit]} 0`
+            let tile = `${honorSuits[honorSuit]}`
             li.setAttribute("tile", tile)
             li.innerText = tile
             ul.appendChild(li)
@@ -40,7 +41,6 @@ class View {
 
     }
     //clicking the meld type button will change the click tile action
-    //Meld type can be stored locally as a dictionary with default value all false, when clicking one button
     //only the chosen one type value become true  and change all other value to false
     //Meld type button can either be selected one or none
     clickMeld(e){

@@ -17,7 +17,7 @@ a8 = new Tile('b', 8)
 // console.log(a1.equal(a5))//false
 // console.log(a1.equal(a6))//false
 // g = new Game()
-// g.addHand(a1)
+// g.addTile(a1)
 // console.log(g.hand)
 // console.log(g.maxHand)
 // console.log(a1.meld('chow'))

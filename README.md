@@ -27,6 +27,6 @@ In addition, this project will include:
 
 ## Implementation Timeline
 - Thursday: Create tile class in JavaScript and create the front end tile selection form
-- Friday and weekend: Create game class that includes the winning hand detection function and score calculator
+- Friday and weekend: Create game class that includes the winning hand detection function and score calculator, connect the game class logic with the front end tile selection
 - Monday: Create setting bar for customize scoring rules
 - Tuesday: Final touch and bug fix, start creating final proposal
