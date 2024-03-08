@@ -35,8 +35,8 @@ class Game{
             }
             let meld = tile.meld(method);
             this.melds.push(meld);
+            this.maxHand -= 3
             meld.forEach((ele)=>{
-                this.maxHand -=1;
                 let eleName = ele.toString()
                 if(this.tileCount[eleName]){
                     this.tileCount[eleName] +=1;

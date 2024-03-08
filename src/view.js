@@ -36,8 +36,9 @@ class View {
     }
     //clicking the tile will append tile in hand / meld and store the tile class object in an array
     //e is the event for clicking tile
-    //meldType is the dictionary for tracking the meld type selection
-    clickTile(e, meldType){
+    //check the game class meld type to see where to add the tile
+    //check the game class tile count and disable the tiles click if it cannot be added
+    clickTile(e){
 
     }
     //clicking the meld type button will change the click tile action
