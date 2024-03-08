@@ -7,33 +7,54 @@ class Game{
         //fanName is a dictionary contains all the possible scoring rules in the game
         // and the corresponding score for the combination
         //MeldType is the dictionary to indicate what type of
-        this.hand = [];
+        this.hands = [];
         this.maxHand = 14;
-        this.meld = [];
+        this.melds = [];
         this.fanName = {};
-        this.meldTypes = {'pong': false, 'chow': false, 'kong': false, 'closed kong': false}
-        this.tileCount = {}
+        this.meldTypes = {'pong': false, 'chow': false, 'kong': false, 'closed kong': false};
+        this.tileCount = {};
     }
 
     addTile(tile){
         //inspect the meldType, if all false add the tile to hand, else add to meld accordingly
-        //prevent user to add tile if the hand is full or number of same card excced 4 in hand
+
         if(Object.values(this.meldTypes).every(el=> !el)){
-            if(this.maxHand > 0 && this.tileCount[tile] < 4) {
-                this.hand.push(tile);
-                this.maxHand -=1;
-                if(this.tileCount[tile]){
-                    this.tileCount[tile] +=1
-                }else{
-                    this.tileCount[tile] = 1
-                }
+            this.hands.push(tile);
+            this.maxHand -=1;
+            let keyName = tile.toString()
+            if(this.tileCount[keyName]){
+                this.tileCount[keyName] +=1;
             }else{
-                throw tile
+                this.tileCount[keyName] = 1;
             }
         }else{
-
+            let method;
+            for(let key in this.meldTypes){
+                let value = this.meldTypes[key];
+                if(value) method = key;
+            }
+            let meld = tile.meld(method);
+            this.melds.push(meld);
+            meld.forEach((ele)=>{
+                this.maxHand -=1;
+                let eleName = ele.toString()
+                if(this.tileCount[eleName]){
+                    this.tileCount[eleName] +=1;
+                }else{
+                    this.tileCount[eleName] = 1;
+                }
+            })
         }
-
+    }
+    meldSwitch(method){
+        for(let key in this.meldTypes){
+            let value = this.meldTypes[key];
+            if(key === method){
+                this.meldTypes[key] = !value;
+            }else{
+                this.meldTypes[key] = false;
+            }
+        }
     }
 
 

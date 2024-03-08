@@ -16,12 +16,20 @@ a8 = new Tile('b', 8)
 // console.log(a1.connect(a5))//false
 // console.log(a1.equal(a5))//false
 // console.log(a1.equal(a6))//false
-// g = new Game()
-// g.addTile(a1)
-// console.log(g.hand)
+g = new Game()
+g.addTile(a1)
+// console.log(g)
+// console.log(g.hands)
 // console.log(g.maxHand)
+// if(a1 in g.tileCount){
+//     console.log(true)
+// }
+g.meldSwitch('pong')
+g.addTile(a3)
+console.log(g)
+// console.log(g)
 // console.log(a1.meld('chow'))
 // console.log(a1.meld('pong'))
 // console.log(a1.meld('kong'))
-console.log(a7.meld('chow'))
-console.log(a8.meld('chow'))
+// console.log(a7.meld('chow'))
+// console.log(a8.meld('chow'))

@@ -7,6 +7,9 @@ class Tile{
         this.suit = suit;
         this.number = number;
     }
+    toString(){
+        return `${this.suit}${this.number}`
+    }
 
     equal(tile){
         //return true if the tile has same number and suit
@@ -40,6 +43,12 @@ class Tile{
                 }
                 break;
             case 'kong':
+                for(let i = 0; i < 4; i++){
+                    let newTile2 = new Tile(this.suit, this.number);
+                    result.push(newTile2);
+                }
+                break;
+            case 'closed kong':
                 for(let i = 0; i < 4; i++){
                     let newTile2 = new Tile(this.suit, this.number);
                     result.push(newTile2);
