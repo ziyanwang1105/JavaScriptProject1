@@ -15,10 +15,14 @@ class View {
     setupTileSelector(){
         let tileSelector = document.querySelector('#tile_selector')
         let ul = document.createElement("ul")
-        this.tile.map((el)=>{
+        ul.setAttribute("class", "tiles")
+        this.tile.map((el, index)=>{
             let li = document.createElement("li")
-            li.setAttribute("tile", el)
-            li.innerText = el.toString()
+            li.setAttribute("tile_index", index)
+            li.setAttribute("class", `tile ${el.toString()}`)
+            let img = document.createElement("img")
+            img.setAttribute("src",`../img/64/fulltiles/${index}.png`)
+            li.appendChild(img)
             ul.appendChild(li)
         })
         tileSelector.append(ul)

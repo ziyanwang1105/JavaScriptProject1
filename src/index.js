@@ -19,7 +19,5 @@ document.addEventListener("DOMContentLoaded", () => {
     let honorTile = new Tile(honorSuits[honorSuit], 0);
     tiles.push(honorTile);
   }
-  localStorage.clear();
-  localStorage.setItem("tiles", JSON.stringify(tiles));
   const v = new View(new Game(), hands, melds, tiles);
   });

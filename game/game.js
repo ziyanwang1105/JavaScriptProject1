@@ -47,6 +47,7 @@ class Game{
         }
     }
     meldSwitch(method){
+        //call the function when the button is clicked in frontend
         for(let key in this.meldTypes){
             let value = this.meldTypes[key];
             if(key === method){
@@ -55,6 +56,10 @@ class Game{
                 this.meldTypes[key] = false;
             }
         }
+    }
+    validAdds(){
+        //return the list of tile that can be added to based on the meld type
+
     }
 
 
