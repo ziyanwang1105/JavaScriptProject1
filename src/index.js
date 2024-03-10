@@ -19,5 +19,5 @@ document.addEventListener("DOMContentLoaded", () => {
     let honorTile = new Tile(honorSuits[honorSuit], 0);
     tiles.push(honorTile);
   }
-  const v = new View(new Game(), hands, melds, tiles);
+  const v = new View(new Game(tiles), hands, melds, tiles);
   });
