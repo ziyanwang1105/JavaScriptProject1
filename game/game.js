@@ -66,12 +66,14 @@ class Game{
         let method = this.checkMeld();
         let result = []
         if(method === 'hand'){
+            if(this.maxHand === 0) return result;
             this.tiles.forEach((tile)=>{
                 if(this.tileCount[tile.toString()] + 1 <=4){
                     result.push(tile.toString());
                 }
             })
         }else{
+            if(this.maxHand < 3) return result;
             this.tiles.forEach((ele)=>{
                 let meld = ele.meld(method);
                 let subCount = {}

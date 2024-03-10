@@ -27,6 +27,9 @@ class View {
         })
         tileSelector.append(ul)
     }
+    setupClicker(){
+
+    }
     //clicking the tile will append tile in hand / meld and store the tile class object in an array
     //e is the event for clicking tile
     //check the game class meld type to see where to add the tile
