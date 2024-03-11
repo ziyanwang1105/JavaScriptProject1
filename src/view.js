@@ -54,11 +54,11 @@ class View {
     //check the game class tile count and disable the tiles click if it cannot be added
     clickTile(e){
         e.preventDefault()
-        // e.currentTarget.removeEventListener('click', this.clickTile);
         let clickIndex = e.target.getAttribute("tile_index");
         let selectTile = this.game.tiles[clickIndex];
         let method = this.game.checkMeld()
         let addObject = this.game.addTile(selectTile);
+        //convert object to html and add it in according to the method
         if(method === 'hand'){
             let hands = document.querySelector('.hands');
             addObject.forEach((ele)=>{
@@ -67,10 +67,13 @@ class View {
                 let index = this.tile.indexOf(ele)
                 let img = document.createElement("img");
                 img.setAttribute("src",`../img/64/fulltiles/${index}.png`);
-                img.setAttribute("tile_index", index);
+                li.setAttribute("tile_index", index);
                 li.appendChild(img);
                 hands.append(li);
-            })
+            });
+            [...hands.children]
+                .sort((a,b)=> Number(a.getAttribute('tile_index')) > Number(b.getAttribute('tile_index')) ? 1 : -1)
+                .forEach((node)=>{hands.appendChild(node)})
         }else{
             let melds = document.querySelector('.melds');
             let li2 = document.createElement("li")
@@ -85,23 +88,15 @@ class View {
                 })
                 let img = document.createElement("img");
                 img.setAttribute("src",`../img/64/fulltiles/${index}.png`);
-                img.setAttribute("tile_index", index);
+                li.setAttribute("tile_index", index);
                 li.appendChild(img);
                 ul.appendChild(li);
                 li2.appendChild(ul)
                 melds.append(li2);
             })
         }
-        // let newClickable = this.game.validAdds()
-        // this.clickTile = this.clickTile.bind(this)
-        // console.log(newClickable.includes(selectTile.toString()))
-        // console.log(selectTile.toString())
-        // console.log(newClickable)
-        // if(newClickable.includes(selectTile.toString())) {
-        //     console.log('add')
-        //     e.currentTarget.addEventListener('click', this.clickTile)
-        // }
         this.setupClickers()
+        //reorder the hand and meld
 
     }
 
@@ -117,6 +112,8 @@ class View {
         this.setupClickers()
 
     }
+
+
 
 }
 

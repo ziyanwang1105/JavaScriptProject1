@@ -39,15 +39,18 @@ g.addTile(a6)
 //     console.log(true)
 // }
 g.meldSwitch('pong')
-console.log(g.addTile(a3))
-g.meldSwitch('pong')
 g.addTile(a3)
-for(let i =0;i < 4; i++){
-  g.addTile(a7)
-}
-console.log(g.tileCount)
+g.meldSwitch('kong')
+g.addTile(a7)
+
+// console.log(g.tileCompare(a1, a2))
+// console.log(g.tileCompare(a1, a6))
+
+g.handSort()
+console.log(g.maxHand)
+// console.log(g.tileCount)
 // g.meldSwitch('chow')
-console.log(g.validAdds())
+// console.log(g.validAdds())
 // console.log(g)
 // console.log(a1.meld('chow'))
 // console.log(a1.meld('pong'))
