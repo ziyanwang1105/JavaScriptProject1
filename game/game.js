@@ -22,21 +22,23 @@ class Game{
     addTile(tile){
         //inspect the meldType, if all false add the tile to hand, else add to meld accordingly
         let method = this.checkMeld()
-
+        let result = []
         if(method === 'hand'){
             this.hands.push(tile);
+            result.push(tile)
             this.maxHand -=1;
             let keyName = tile.toString()
             this.tileCount[keyName] +=1;
         }else{
-            let meld = tile.meld(method);
-            this.melds.push(meld);
+            result = tile.meld(method);
+            this.melds.push(result);
             this.maxHand -= 3
-            meld.forEach((ele)=>{
+            result.forEach((ele)=>{
                 let eleName = ele.toString()
                 this.tileCount[eleName] +=1;
             })
         }
+        return result
     }
     meldSwitch(method){
         //call the function when the button is clicked in frontend

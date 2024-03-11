@@ -3,3 +3,13 @@
     flex-wrap: wrap;
 
 }
+.hands{
+    display: inline-flex;
+    flex-wrap: wrap;
+
+}
+.melds{
+    display: inline-flex;
+    flex-wrap: wrap;
+
+}

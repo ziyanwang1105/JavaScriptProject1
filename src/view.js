@@ -51,30 +51,55 @@ class View {
     //check the game class tile count and disable the tiles click if it cannot be added
     clickTile(e){
         e.preventDefault()
-        let index = e.target.getAttribute("tile_index");
-        let tile = this.game.tiles[index];
-        this.game.addTile(tile);
-        if(this.game.checkMeld() === 'hand'){
-            let hand = document.querySelector('#hand');
+        let clickIndex = e.target.getAttribute("tile_index");
+        let selectTile = this.game.tiles[clickIndex];
+        let method = this.game.checkMeld()
+        let addObject = this.game.addTile(selectTile);
+        if(method === 'hand'){
+            let hands = document.querySelector('#hand');
             let ul = document.createElement("ul");
             ul.setAttribute("class", "hands");
-            let li = document.createElement("li");
-            li.setAttribute("class", `${tile.toString()}`);
-            let img = document.createElement("img");
-            img.setAttribute("src",`../img/64/fulltiles/${index}.png`);
-            img.setAttribute("tile_index", index);
-            li.appendChild(img);
-            ul.appendChild(li);
-            hand.append(ul);
-        }else{
+            addObject.forEach((ele)=>{
+                let li = document.createElement("li");
+                li.setAttribute("class", `${ele.toString()}`);
+                let index = this.tile.indexOf(ele)
+                let img = document.createElement("img");
+                img.setAttribute("src",`../img/64/fulltiles/${index}.png`);
+                img.setAttribute("tile_index", index);
+                li.appendChild(img);
+                ul.appendChild(li);
+                hands.append(ul);
+            })
 
+        }else{
+            let melds = document.querySelector('#meld');
+            let ul = document.createElement("ul");
+            ul.setAttribute("class", "melds");
+            addObject.forEach((ele)=>{
+                let li = document.createElement("li");
+                li.setAttribute("class", `${ele.toString()}`);
+                let index;
+                this.tile.forEach((ele2, i)=>{
+                    if(ele2.equal(ele)) index = i;
+                })
+                let img = document.createElement("img");
+                img.setAttribute("src",`../img/64/fulltiles/${index}.png`);
+                img.setAttribute("tile_index", index);
+                li.appendChild(img);
+                ul.appendChild(li);
+                melds.append(ul);
+            })
         }
 
 
+
+
     }
+
     //clicking the meld type button will change the click tile action
     //only the chosen one type value become true  and change all other value to false
     //Meld type button can either be selected one or none
+
 
     clickMeld(e){
         e.preventDefault()

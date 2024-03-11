@@ -39,7 +39,7 @@ g.addTile(a6)
 //     console.log(true)
 // }
 g.meldSwitch('pong')
-g.addTile(a3)
+console.log(g.addTile(a3))
 g.meldSwitch('pong')
 g.addTile(a3)
 for(let i =0;i < 4; i++){
