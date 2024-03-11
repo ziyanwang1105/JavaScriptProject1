@@ -32,8 +32,6 @@ class View {
 
     setupClickers(){
         let clickable = this.game.validAdds();
-        console.log(clickable)
-        console.log(this.game.tileCount)
         let tiles = document.querySelectorAll('.tiles > li')
         tiles.forEach((ele)=>{
             ele.removeEventListener('click', this.clickTile)
@@ -62,9 +60,7 @@ class View {
         let method = this.game.checkMeld()
         let addObject = this.game.addTile(selectTile);
         if(method === 'hand'){
-            let hands = document.querySelector('#hand');
-            let ul = document.createElement("ul");
-            ul.setAttribute("class", "hands");
+            let hands = document.querySelector('.hands');
             addObject.forEach((ele)=>{
                 let li = document.createElement("li");
                 li.setAttribute("class", `${ele.toString()}`);
@@ -73,13 +69,13 @@ class View {
                 img.setAttribute("src",`../img/64/fulltiles/${index}.png`);
                 img.setAttribute("tile_index", index);
                 li.appendChild(img);
-                ul.appendChild(li);
-                hands.append(ul);
+                hands.append(li);
             })
         }else{
-            let melds = document.querySelector('#meld');
+            let melds = document.querySelector('.melds');
+            let li2 = document.createElement("li")
             let ul = document.createElement("ul");
-            ul.setAttribute("class", "melds");
+            ul.setAttribute("meldType", `${method}`);
             addObject.forEach((ele)=>{
                 let li = document.createElement("li");
                 li.setAttribute("class", `${ele.toString()}`);
@@ -92,7 +88,8 @@ class View {
                 img.setAttribute("tile_index", index);
                 li.appendChild(img);
                 ul.appendChild(li);
-                melds.append(ul);
+                li2.appendChild(ul)
+                melds.append(li2);
             })
         }
         // let newClickable = this.game.validAdds()

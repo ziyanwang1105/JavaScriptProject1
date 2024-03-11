@@ -8,7 +8,12 @@
     flex-wrap: wrap;
 
 }
-.melds{
+.melds > *{
+    display: inline-flex;
+    flex-wrap: wrap;
+
+}
+.melds > * > *{
     display: inline-flex;
     flex-wrap: wrap;
 
