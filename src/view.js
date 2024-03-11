@@ -2,9 +2,11 @@ class View {
     constructor(game, tile){
         this.game = game //game object that store and evaluate hand and meld
         this.tile = tile //local storage of all tiles
+        this.clickTile = this.clickTile.bind(this)
         this.setupTileSelector()
         this.setupClickers()
         this.setupMeldClickers()
+
     }
     //generate all tile
     //add event listener for clicing the tile and it will either add to hand or meld
@@ -30,10 +32,13 @@ class View {
 
     setupClickers(){
         let clickable = this.game.validAdds();
+        console.log(clickable)
+        console.log(this.game.tileCount)
         let tiles = document.querySelectorAll('.tiles > li')
         tiles.forEach((ele)=>{
+            ele.removeEventListener('click', this.clickTile)
             if(clickable.includes(ele.className)){
-                ele.addEventListener('click', this.clickTile.bind(this));
+                ele.addEventListener('click', this.clickTile);
             }
         })
     }
@@ -51,6 +56,7 @@ class View {
     //check the game class tile count and disable the tiles click if it cannot be added
     clickTile(e){
         e.preventDefault()
+        // e.currentTarget.removeEventListener('click', this.clickTile);
         let clickIndex = e.target.getAttribute("tile_index");
         let selectTile = this.game.tiles[clickIndex];
         let method = this.game.checkMeld()
@@ -70,7 +76,6 @@ class View {
                 ul.appendChild(li);
                 hands.append(ul);
             })
-
         }else{
             let melds = document.querySelector('#meld');
             let ul = document.createElement("ul");
@@ -90,9 +95,16 @@ class View {
                 melds.append(ul);
             })
         }
-
-
-
+        // let newClickable = this.game.validAdds()
+        // this.clickTile = this.clickTile.bind(this)
+        // console.log(newClickable.includes(selectTile.toString()))
+        // console.log(selectTile.toString())
+        // console.log(newClickable)
+        // if(newClickable.includes(selectTile.toString())) {
+        //     console.log('add')
+        //     e.currentTarget.addEventListener('click', this.clickTile)
+        // }
+        this.setupClickers()
 
     }
 
@@ -105,7 +117,8 @@ class View {
         e.preventDefault()
         let method = e.target.getAttribute("id")
         this.game.meldSwitch(method)
-        console.log(this.game.meldTypes)
+        this.setupClickers()
+
     }
 
 }
