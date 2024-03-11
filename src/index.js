@@ -2,8 +2,6 @@ const Game = require("../game/game.js")
 const Tile = require("../game/tile.js")
 import View from "./view.js"
 
-const hands= document.querySelector('#hand')
-const melds= document.querySelector('#meld')
 const tiles= [];
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -19,5 +17,5 @@ document.addEventListener("DOMContentLoaded", () => {
     let honorTile = new Tile(honorSuits[honorSuit], 0);
     tiles.push(honorTile);
   }
-  const v = new View(new Game(tiles), hands, melds, tiles);
+  const v = new View(new Game(tiles), tiles);
   });
