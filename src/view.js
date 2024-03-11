@@ -1,10 +1,10 @@
 class View {
     constructor(game, tile){
         this.game = game //game object that store and evaluate hand and meld
-        this.meld = meld //html element from id meld
         this.tile = tile //local storage of all tiles
         this.setupTileSelector()
         this.setupClickers()
+        this.setupMeldClickers()
     }
     //generate all tile
     //add event listener for clicing the tile and it will either add to hand or meld
@@ -38,6 +38,13 @@ class View {
         })
     }
 
+    setupMeldClickers(){
+        let melds = document.querySelectorAll('#meld_type > button')
+        melds.forEach((buttons)=>{
+            buttons.addEventListener('click', this.clickMeld.bind(this))
+        })
+    }
+
     //clicking the tile will append tile in hand / meld and store the tile class object in an array
     //e is the event for clicking tile
     //check the game class meld type to see where to add the tile
@@ -47,25 +54,33 @@ class View {
         let index = e.target.getAttribute("tile_index");
         let tile = this.game.tiles[index];
         this.game.addTile(tile);
-        let hand = document.querySelector('#hand');
-        let ul = document.createElement("ul");
-        ul.setAttribute("class", "hands");
-        let li = document.createElement("li");
-        li.setAttribute("class", `${tile.toString()}`);
-        let img = document.createElement("img");
-        img.setAttribute("src",`../img/64/fulltiles/${index}.png`);
-        img.setAttribute("tile_index", index);
-        li.appendChild(img);
-        ul.appendChild(li);
-        hand.append(ul);
+        if(this.game.checkMeld() === 'hand'){
+            let hand = document.querySelector('#hand');
+            let ul = document.createElement("ul");
+            ul.setAttribute("class", "hands");
+            let li = document.createElement("li");
+            li.setAttribute("class", `${tile.toString()}`);
+            let img = document.createElement("img");
+            img.setAttribute("src",`../img/64/fulltiles/${index}.png`);
+            img.setAttribute("tile_index", index);
+            li.appendChild(img);
+            ul.appendChild(li);
+            hand.append(ul);
+        }else{
+
+        }
 
 
     }
     //clicking the meld type button will change the click tile action
     //only the chosen one type value become true  and change all other value to false
     //Meld type button can either be selected one or none
-    clickMeld(e){
 
+    clickMeld(e){
+        e.preventDefault()
+        let method = e.target.getAttribute("id")
+        this.game.meldSwitch(method)
+        console.log(this.game.meldTypes)
     }
 
 }

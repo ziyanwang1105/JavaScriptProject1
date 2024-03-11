@@ -12,7 +12,7 @@ class Game{
         this.maxHand = 14;
         this.melds = [];
         this.fanName = {};
-        this.meldTypes = {'pong': false, 'chow': false, 'kong': false, 'closed kong': false};
+        this.meldTypes = {'pong': false, 'chow': false, 'kong': false, 'closed_kong': false};
         this.tileCount = {};
         this.tiles.forEach((tile)=>{
             this.tileCount[tile.toString()] = 0
