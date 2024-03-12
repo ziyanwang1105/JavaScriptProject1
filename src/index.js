@@ -1,6 +1,6 @@
-const Game = require("../game/game.js")
-const Tile = require("../game/tile.js")
-import View from "./view.js"
+const Game = require("./scripts/game/game.js")
+const Tile = require("./scripts/game/tile.js")
+import View from "./scripts/view.js"
 
 const tiles= [];
 

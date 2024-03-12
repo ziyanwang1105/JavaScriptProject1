@@ -12,7 +12,6 @@ class Game{
         this.maxHand = 14;
         this.melds = [];
         this.hu
-        this.fanName = {};
         this.meldTypes = {'chow': false, 'pong': false, 'kong': false, 'closed_kong': false};
         this.tileCount = {};
         this.tiles.forEach((tile)=>{
@@ -113,20 +112,14 @@ class Game{
             if(tile1.toString() === tile.toString()) idx1 = index;
             if(tile2.toString() === tile.toString()) idx2 = index;
         })
-        return idx1 < idx2
+        return idx1 > idx2 ? 1 : -1
     }
 
     handSort(){
-        //bubble sort hand
-        for(let i = 0; i < this.hands.length; i++){
-            for(let j = 0; j < this.hands.length - i - 1; j++){
-                if(this.tileCompare(this.hands[i], this.hands[j])){
-                    let temp = this.hands[j];
-                    this.hands[j] = this.hands[j+1];
-                    this.hands[j+1] = temp;
-                }
-            }
-        }
+        this.hands.sort((a,b)=>this.tileCompare(a,b))
+    }
+    handToString(){
+        return this.hands.map((el)=>el.toString()).join(' ')
     }
 }
 
