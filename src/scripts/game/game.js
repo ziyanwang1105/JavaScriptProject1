@@ -6,6 +6,9 @@ class Game{
         // kong, chow display on the table
         //scoreName is a list contains all the possible scoring from winning hand
         //MeldType is the dictionary to indicate what type of
+        //hu is the final card added to the hand that player win the game
+        //tileCount keep track of tile used in the hand in dictionary
+        //initialize tileCount with the tiles passed in the constructor
         this.tiles = tiles;
         this.hands = [];
         this.maxHand = 14;
@@ -16,6 +19,10 @@ class Game{
         this.tileCount = {};
         this.tiles.forEach((tile)=>{
             this.tileCount[tile.toString()] = 0
+        })
+        this.suitCount = {}
+        this.tiles.forEach((tile)=>{
+            this.suitCount[tile.suit] = 0
         })
     }
 
@@ -29,6 +36,7 @@ class Game{
             this.maxHand -=1;
             let keyName = tile.toString();
             this.tileCount[keyName] +=1;
+            this.suitCount[tile.suit] +=1;
             this.handSort()
             if(this.maxHand === 0) {this.hu = tile};
         }else{
@@ -38,6 +46,7 @@ class Game{
             result.forEach((ele)=>{
                 let eleName = ele.toString()
                 this.tileCount[eleName] +=1;
+                this.suitCount[ele.suit] +=1;
             })
         }
         return result
@@ -128,6 +137,30 @@ class Game{
 
     //Score detection
     //Special hand detection
+    sevenPairs(){
+        //check if all tiles are in hand and they all comes in pair
+        return Object.values(this.tileCount).every(el=>el === 2 || el === 0) && Object.values(this.melds).every(el => el.length === 0)
+    }
+
+    pureSuit(){
+        //check if the hand + meld is pure suit or not. If it is return the pure suit symbol, else return false
+        let suit;
+        for(let ele in this.suitCount){
+            let value = this.suitCount[ele]
+            if(value === 14) suit = ele
+            return suit
+        }
+        return false
+    }
+
+    nineGate(){
+        //check if the hand is a nine gate
+        //speical hand in pure suit
+        if(this.pureSuit()){
+
+
+        }
+    }
 
     //Generic hand detection
     //Find the eye pair on hand and divde the rest of the tile as set of 3, if all sets are sequence or pong, the hand is a valid win hand

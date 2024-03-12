@@ -22,6 +22,10 @@ for(let honorSuit in honorSuits){
     let honorTile = new Tile(honorSuits[honorSuit], 0);
     tiles.push(honorTile);
   }
+////check tile class
+
+///check equal & connect
+
 // console.log(a1.equal(a2))//true
 // console.log(a1.equal(a3))//false
 // console.log(a1.connect(a3))//true
@@ -29,7 +33,11 @@ for(let honorSuit in honorSuits){
 // console.log(a1.connect(a5))//false
 // console.log(a1.equal(a5))//false
 // console.log(a1.equal(a6))//false
+
+////check game class
 g = new Game(tiles)
+///check addTile
+
 // g.addTile(a1)
 // g.addTile(a1)
 // for(let i =0; i < 2; i++){
@@ -41,19 +49,27 @@ g = new Game(tiles)
 // // if(a1 in g.tileCount){
 // //     console.log(true)
 // // }
-g.meldSwitch('pong')
-g.addTile(a3)
-g.meldSwitch('kong')
-g.addTile(a7)
-console.log(g.melds)
+
+///check meldswitch and meld add
+
+// g.meldSwitch('pong')
+// g.addTile(a3)
+// g.meldSwitch('kong')
+// g.addTile(a7)
+// console.log(g.melds)
 // g.meldSwitch('pong')
 // g.addTile(a8)
 // g.meldSwitch('pong')
 // g.addTile(a6)
+
+///check tile compare for sorting
+
 // console.log(g.tileCompare(a1, a2))
 // console.log(g.tileCompare(a1, a6))
 // console.log(g.hands)
 // console.log(g.tileCount)
+
+///check valid adds function
 // g.meldSwitch('chow')
 // console.log(g.validAdds())
 // console.log(g)
@@ -63,6 +79,9 @@ console.log(g.melds)
 // console.log(a7.meld('chow'))
 // console.log(a8.meld('chow'))
 
+///check score evaluation
+
+//thirteen orphans hand
 // let thirteen = []
 // suits.forEach((suit)=>{
 //   let one = new Tile(suit, 1)
@@ -80,3 +99,31 @@ console.log(g.melds)
 // g.addTile(a1)
 // console.log(g.handToString())
 // console.log(g.hu)
+
+//7 pair hand
+// for(let i = 0; i < 2; i++){
+//   g.addTile(a1)
+//   g.addTile(a3)
+//   g.addTile(a4)
+//   g.addTile(a5)
+//   g.addTile(a6)
+//   g.addTile(a7)
+//   g.addTile(a8)
+// }
+// console.log(g.handToString())
+// console.log(g.hu)
+// console.log(g.sevenPairs())
+// console.log(g.suitCount)
+
+//pure suit hand and nine Gate hand
+for(let i = 1; i < 10; i++){
+  g.addTile(new Tile('c', i))
+  if(i === 1 || i ===9){
+    g.addTile(new Tile('c', i))
+    g.addTile(new Tile('c', i))
+  }
+}
+g.addTile(new Tile('c', 2))
+console.log(g.handToString())
+console.log(g.hu)
+console.log(g.pureSuit())
