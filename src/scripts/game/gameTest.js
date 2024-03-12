@@ -82,24 +82,24 @@ g = new Game(tiles)
 ///check score evaluation
 
 //thirteen orphans hand
-// let thirteen = []
-// suits.forEach((suit)=>{
-//   let one = new Tile(suit, 1)
-//   let nine = new Tile(suit, 9)
-//   thirteen.push(one)
-//   thirteen.push(nine)
-// })
-// for(let honorSuit in honorSuits){
-//   let honorTile = new Tile(honorSuits[honorSuit], 0);
-//   thirteen.push(honorTile);
-// }
-// thirteen.forEach((el)=>{
-//   g.addTile(el)
-// })
-// g.addTile(a1)
-// console.log(g.handToString())
-// console.log(g.hu)
-
+let thirteen = []
+suits.forEach((suit)=>{
+  let one = new Tile(suit, 1)
+  let nine = new Tile(suit, 9)
+  thirteen.push(one)
+  thirteen.push(nine)
+})
+for(let honorSuit in honorSuits){
+  let honorTile = new Tile(honorSuits[honorSuit], 0);
+  thirteen.push(honorTile);
+}
+thirteen.forEach((el)=>{
+  g.addTile(el)
+})
+g.addTile(new Tile('c', 2))
+console.log(g.handToString())
+console.log(g.hu)
+console.log(g.thirteenOrphans())
 //7 pair hand
 // for(let i = 0; i < 2; i++){
 //   g.addTile(a1)
@@ -115,15 +115,16 @@ g = new Game(tiles)
 // console.log(g.sevenPairs())
 // console.log(g.suitCount)
 
-//pure suit hand and nine Gate hand
-for(let i = 1; i < 10; i++){
-  g.addTile(new Tile('c', i))
-  if(i === 1 || i ===9){
-    g.addTile(new Tile('c', i))
-    g.addTile(new Tile('c', i))
-  }
-}
-g.addTile(new Tile('c', 2))
-console.log(g.handToString())
-console.log(g.hu)
-console.log(g.pureSuit())
+// //pure suit hand and nine Gate hand
+// for(let i = 1; i < 10; i++){
+//   g.addTile(new Tile('c', i))
+//   if(i === 1 || i ===9){
+//     g.addTile(new Tile('c', i))
+//     g.addTile(new Tile('c', i))
+//   }
+// }
+// g.addTile(new Tile('c', 4))
+// console.log(g.handToString())
+// console.log(g.hu)
+// console.log(g.pureSuit())
+// console.log(g.nineGate())

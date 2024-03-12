@@ -144,11 +144,10 @@ class Game{
 
     pureSuit(){
         //check if the hand + meld is pure suit or not. If it is return the pure suit symbol, else return false
-        let suit;
+
         for(let ele in this.suitCount){
             let value = this.suitCount[ele]
-            if(value === 14) suit = ele
-            return suit
+            if(value === 14) return ele
         }
         return false
     }
@@ -156,13 +155,61 @@ class Game{
     nineGate(){
         //check if the hand is a nine gate
         //speical hand in pure suit
-        if(this.pureSuit()){
-
-
+        let sampleCount = {}
+        for(let i = 1; i < 10; i++){
+            if(i === 1 || i ===9){
+                sampleCount[i] = 3
+            }else{
+                sampleCount[i] = 1
+            }
         }
+        sampleCount[this.hu.number] += 1
+        if(this.pureSuit()){
+            this.hands.forEach((el)=>{
+                let key = el.number
+                if(sampleCount[key]){
+                    sampleCount[key] -=1
+                }else{
+                    sampleCount[key] = -1
+                }
+            })
+        }
+        return Object.values(sampleCount).every(el=> el === 0)
+    }
+
+    thirteenOrphans(){
+        let suits=[];
+        let honorSuits=[];
+        Object.keys(this.suitCount).forEach((el)=>{
+            if(el.length > 1){
+                honorSuits.push(el)
+            }else{
+                suits.push(el)
+            }
+        })
+        let sampleCount = {}
+        suits.forEach((suit)=>{
+            sampleCount[`${suit}1`] = 1
+            sampleCount[`${suit}9`] = 1
+        })
+        honorSuits.forEach((ele)=>{
+            sampleCount[`${ele}0`] = 1
+        })
+        sampleCount[this.hu.toString()] +=1
+        this.hands.forEach((el)=>{
+            let key = el.toString()
+            if(sampleCount[key]){
+                sampleCount[key] -=1
+            }else{
+                sampleCount[key] = -1
+            }
+        })
+        return Object.values(sampleCount).every(el=> el === 0)
+
     }
 
     //Generic hand detection
+    //check special hand before everything
     //Find the eye pair on hand and divde the rest of the tile as set of 3, if all sets are sequence or pong, the hand is a valid win hand
     //based on the type of sets on hand and melds there are more score calculated
 }
