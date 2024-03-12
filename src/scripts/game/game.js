@@ -212,6 +212,32 @@ class Game{
     //check special hand before everything
     //Find the eye pair on hand and divde the rest of the tile as set of 3, if all sets are sequence or pong, the hand is a valid win hand
     //based on the type of sets on hand and melds there are more score calculated
+
+    checkScore(){
+        //check if hand is incomplete
+        if(!this.hu || this.maxHand !== 0) return ['The hand is invalid'];
+        //check if hand is a special hand
+        let specialHands = [this.sevenPairs, this.thirteenOrphans, this.nineGate]
+        specialHands.forEach((fun)=>{
+            if (fun.call(this)){
+                this.scoreName.push(fun.name)
+            }
+        })
+        //check if hand can be hu
+
+        //find all score name from hand
+        //check suits score: pureSuit, mixSuit, and allHonorSuit, greatWind, littleDragon, littleWind, greatDragon, pureGreen
+        let suitScore = [this.pureSuit]
+        suitScore.forEach((fun)=>{
+            if (fun.call(this)){
+                this.scoreName.push(fun.name)
+            }
+        })
+
+
+
+        return this.scoreName
+    }
 }
 
 

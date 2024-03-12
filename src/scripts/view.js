@@ -6,7 +6,7 @@ class View {
         this.setupTileSelector()
         this.setupClickers()
         this.setupMeldClickers()
-
+        this.setupCalculateClickers()
     }
     //generate all tile
     //add event listener for clicing the tile and it will either add to hand or meld
@@ -46,6 +46,11 @@ class View {
         melds.forEach((buttons)=>{
             buttons.addEventListener('click', this.clickMeld.bind(this))
         })
+    }
+
+    setupCalculateClickers(){
+        let calcButton = document.querySelector('#calculate_score')
+        calcButton.addEventListener('click', this.clickCalculate.bind(this))
     }
 
     //clicking the tile will append tile in hand / meld and store the tile class object in an array
@@ -113,6 +118,17 @@ class View {
 
     }
 
+    clickCalculate(e){
+        e.preventDefault()
+        let result = this.game.checkScore()
+        let scoreBoard = document.querySelector('.scores')
+        scoreBoard.innerHTML = ''
+        result.forEach((el)=>{
+            let li = document.createElement("li")
+            li.innerText = el
+            scoreBoard.appendChild(li)
+        })
+    }
 
 
 }

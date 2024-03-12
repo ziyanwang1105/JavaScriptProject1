@@ -96,10 +96,10 @@ for(let honorSuit in honorSuits){
 thirteen.forEach((el)=>{
   g.addTile(el)
 })
-g.addTile(new Tile('c', 2))
+g.addTile(new Tile('c', 1))
 console.log(g.handToString())
 console.log(g.hu)
-console.log(g.thirteenOrphans())
+console.log(g.checkScore())
 //7 pair hand
 // for(let i = 0; i < 2; i++){
 //   g.addTile(a1)
