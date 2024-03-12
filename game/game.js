@@ -30,7 +30,8 @@ class Game{
             this.maxHand -=1;
             let keyName = tile.toString();
             this.tileCount[keyName] +=1;
-            if(this.maxHand === 0) this.hu = tile;
+            this.handSort()
+            if(this.maxHand === 0) {this.hu = tile};
         }else{
             result = tile.meld(method);
             this.melds.push(result);

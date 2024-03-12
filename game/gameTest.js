@@ -31,7 +31,10 @@ for(let honorSuit in honorSuits){
 // console.log(a1.equal(a6))//false
 g = new Game(tiles)
 g.addTile(a1)
-g.addTile(a6)
+g.addTile(a1)
+for(let i =0; i < 2; i++){
+  g.addTile(a6)
+}
 // console.log(g)
 // console.log(g.hands)
 // console.log(g.maxHand)
@@ -42,12 +45,13 @@ g.meldSwitch('pong')
 g.addTile(a3)
 g.meldSwitch('kong')
 g.addTile(a7)
-
+g.meldSwitch('pong')
+g.addTile(a8)
+g.meldSwitch('pong')
+g.addTile(a6)
 // console.log(g.tileCompare(a1, a2))
 // console.log(g.tileCompare(a1, a6))
-
-g.handSort()
-console.log(g.maxHand)
+console.log(g.hands)
 // console.log(g.tileCount)
 // g.meldSwitch('chow')
 // console.log(g.validAdds())
