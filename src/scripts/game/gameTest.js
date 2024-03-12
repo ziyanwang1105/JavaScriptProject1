@@ -41,10 +41,11 @@ g = new Game(tiles)
 // // if(a1 in g.tileCount){
 // //     console.log(true)
 // // }
-// g.meldSwitch('pong')
-// g.addTile(a3)
-// g.meldSwitch('kong')
-// g.addTile(a7)
+g.meldSwitch('pong')
+g.addTile(a3)
+g.meldSwitch('kong')
+g.addTile(a7)
+console.log(g.melds)
 // g.meldSwitch('pong')
 // g.addTile(a8)
 // g.meldSwitch('pong')
@@ -62,20 +63,20 @@ g = new Game(tiles)
 // console.log(a7.meld('chow'))
 // console.log(a8.meld('chow'))
 
-let thirteen = []
-suits.forEach((suit)=>{
-  let one = new Tile(suit, 1)
-  let nine = new Tile(suit, 9)
-  thirteen.push(one)
-  thirteen.push(nine)
-})
-for(let honorSuit in honorSuits){
-  let honorTile = new Tile(honorSuits[honorSuit], 0);
-  thirteen.push(honorTile);
-}
-thirteen.forEach((el)=>{
-  g.addTile(el)
-})
-g.addTile(a1)
-console.log(g.handToString())
-console.log(g.hu)
+// let thirteen = []
+// suits.forEach((suit)=>{
+//   let one = new Tile(suit, 1)
+//   let nine = new Tile(suit, 9)
+//   thirteen.push(one)
+//   thirteen.push(nine)
+// })
+// for(let honorSuit in honorSuits){
+//   let honorTile = new Tile(honorSuits[honorSuit], 0);
+//   thirteen.push(honorTile);
+// }
+// thirteen.forEach((el)=>{
+//   g.addTile(el)
+// })
+// g.addTile(a1)
+// console.log(g.handToString())
+// console.log(g.hu)

@@ -2,16 +2,16 @@
 class Game{
     constructor(tiles){
         //the hand consist maximum 14 tiles
-        //meld consists array of arrays where each individual array is the pong,
+        //meld consists dictionary where the value is array of arrays where each individual array is the pong,
         // kong, chow display on the table
-        //fanName is a dictionary contains all the possible scoring rules in the game
-        // and the corresponding score for the combination
+        //scoreName is a list contains all the possible scoring from winning hand
         //MeldType is the dictionary to indicate what type of
         this.tiles = tiles;
         this.hands = [];
         this.maxHand = 14;
-        this.melds = [];
+        this.melds = {'chow':[], 'pong': [], 'kong': [], 'closed_kong': []};
         this.hu
+        this.scoreName = []
         this.meldTypes = {'chow': false, 'pong': false, 'kong': false, 'closed_kong': false};
         this.tileCount = {};
         this.tiles.forEach((tile)=>{
@@ -33,7 +33,7 @@ class Game{
             if(this.maxHand === 0) {this.hu = tile};
         }else{
             result = tile.meld(method);
-            this.melds.push(result);
+            this.melds[method].push(result);
             this.maxHand -= 3
             result.forEach((ele)=>{
                 let eleName = ele.toString()
@@ -42,6 +42,7 @@ class Game{
         }
         return result
     }
+
     meldSwitch(method){
         //call the function when the button is clicked in frontend
         for(let key in this.meldTypes){
@@ -53,6 +54,7 @@ class Game{
             }
         }
     }
+
     checkMeld(){
         let method;
         if(Object.values(this.meldTypes).every(el=> !el)){
@@ -65,6 +67,7 @@ class Game{
         }
         return method;
     }
+
     validAdds(){
         //return the list of tile that can be added to based on the meld type
         let method = this.checkMeld();
@@ -118,9 +121,17 @@ class Game{
     handSort(){
         this.hands.sort((a,b)=>this.tileCompare(a,b))
     }
+
     handToString(){
         return this.hands.map((el)=>el.toString()).join(' ')
     }
+
+    //Score detection
+    //Special hand detection
+
+    //Generic hand detection
+    //Find the eye pair on hand and divde the rest of the tile as set of 3, if all sets are sequence or pong, the hand is a valid win hand
+    //based on the type of sets on hand and melds there are more score calculated
 }
 
 
