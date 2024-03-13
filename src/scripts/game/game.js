@@ -247,13 +247,12 @@ class Game{
         //when all tiles are formed accordingly, return the deconstruct hand for further score evaluation
         let handDeconstruct = [];
         let eyes = this.allEye();
-        let trueEye;
         for(let key in eyes){
             //generate the remaining hand without the eye
             //check if remaining can form triplet of seq of pong
             let el = eyes[key][0];
             let remaining = [...this.hands]
-            remaining.splice(el, 2)
+            handDeconstruct.push(remaining.splice(el, 2))
             if(remaining.length % 3 !== 0) return false;
 
             //check if there is any triplet of sequence in remaining
@@ -282,16 +281,14 @@ class Game{
             }
 
 
-            //if all tiles are seen break the iteration
+            //if all tiles are used break the iteration
             if(remaining.length === 0){
-                trueEye = this.hands[el]
-                handDeconstruct.push(trueEye.eye())
-                break;
+                return handDeconstruct;
             }else{
                 handDeconstruct = []
             }
         }
-        return handDeconstruct
+
 
 
     }
