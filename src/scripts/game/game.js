@@ -15,7 +15,6 @@ class Game{
         this.maxHand = 14;
         this.melds = {'chow':[], 'pong': [], 'kong': [], 'closed_kong': []};
         this.hu
-        this.scoreName = []
         this.meldTypes = {'chow': false, 'pong': false, 'kong': false, 'closed_kong': false};
         this.tileCount = {};
         this.tiles.forEach((tile)=>{
@@ -296,31 +295,31 @@ class Game{
     checkScore(){
 
         //reset score
-        this.scoreName = [];
+        let scoreName = [];
         //check if hand is incomplete
         if(!this.hu || this.maxHand !== 0) return ['The hand is incomplete'];
         //check if hand is a special hand
         let specialHands = [this.sevenPairs, this.thirteenOrphans, this.nineGate];
         specialHands.forEach((fun)=>{
             if (fun.call(this)){
-                this.scoreName.push(fun.name);
+                scoreName.push(fun.name);
             }
         })
-        if(this.scoreName > 0) return this.scoreName;
+        if(scoreName.length > 0 && !scoreName.includes(this.sevenPairs.name)) return scoreName;
 
         //check suits score: pureSuit, mixSuit, and allHonorSuit, greatWind, littleDragon, littleWind, greatDragon, pureGreen
         let suitScore = [this.pureSuit]
         suitScore.forEach((fun)=>{
             if (fun.call(this)){
-                this.scoreName.push(fun.name);
+                scoreName.push(fun.name);
             }
         })
 
-        if(this.scoreName.includes(this.sevenPairs.name)) return this.scoreName;
+        if(scoreName.includes(this.sevenPairs.name)) return scoreName;
         //check if hand can be hu
         let deconstruct = this.validHu();
         //find all score name from hand
-        if(deconstruct.length > 0) return this.scoreName;
+        if(deconstruct.length > 0) return scoreName;
     }
 }
 
