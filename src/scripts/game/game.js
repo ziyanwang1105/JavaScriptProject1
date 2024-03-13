@@ -139,7 +139,11 @@ class Game{
     //Special hand detection
     sevenPairs(){
         //check if all tiles are in hand and they all comes in pair
-        return Object.values(this.tileCount).every(el=>el === 2 || el === 0) && Object.values(this.melds).every(el => el.length === 0)
+        if (Object.values(this.tileCount).every(el=>el === 2 || el === 0) && Object.values(this.melds).every(el => el.length === 0)){
+            if(this.pureSuit()) this.scoreName.push(this.pureSuit.name)
+            return true
+        }
+        return false
     }
 
     pureSuit(){
@@ -207,7 +211,70 @@ class Game{
         return Object.values(sampleCount).every(el=> el === 0)
 
     }
+    //find all pair eyes in the hand and the first index where the eye locate in hand
+    allEye(){
+        let lens = this.hands.slice(0,2);
+        let result = {};
+        for(let i = 0; i < this.hands.length - 2; i++){
+            if(lens[0].equal(lens[1])){
+                let key = lens[0].toString()
+                if(!result[key]){
+                    result[key] = [i]
+                }
+            }
+            lens.shift();
+            lens.push(this.hands[i+2]);
+        }
+        if(lens[0].equal(lens[1])){
+            let key = lens[0].toString()
+            if(!result[key]){
+                result[key] = [this.hands.length - 1]
+            }
+        }
+        return result
+    }
+    remainingHand(hand, idx, sliceNum){
+        //pass in an eye index and return the remaining hand
+        let result;
 
+            if(idx === 0){
+                console.log('first')
+                result = hand.slice(sliceNum);
+            }else if(idx === hand.length - sliceNum + 1){
+                console.log('last')
+                result = hand.slice(0, idx - 1);
+            }else{
+                console.log('here')
+                result = hand.slice(0,idx).concat(hand.slice(idx + sliceNum, hand.length));
+            }
+
+        return result
+    }
+
+    //check if the hand can hu
+    validHu(){
+        ///first find all possible eye pair in hand, iterate through the eye
+        //to check if the rest of the hand can be constructed to all triplet of pong or sequence
+        //when all tiles are formed accordingly, return the deconstruct hand for further score evaluation
+        let handDeconstruct = [];
+        let eyes = this.allEye();
+        let trueEye;
+        for(let key in eyes){
+            console.log(key)
+            let el = eyes[key][0];
+            console.log(el)
+            let remaining = this.remainingHand([...this.hands], el, 2);
+            //check if there is any triplet of pong in hand
+
+            //check if there is any triplet of sequence
+
+            //if all tiles are seen break the iteration
+
+        }
+
+
+
+    }
     //Generic hand detection
     //check special hand before everything
     //Find the eye pair on hand and divde the rest of the tile as set of 3, if all sets are sequence or pong, the hand is a valid win hand
@@ -215,7 +282,7 @@ class Game{
 
     checkScore(){
         //check if hand is incomplete
-        if(!this.hu || this.maxHand !== 0) return ['The hand is invalid'];
+        if(!this.hu || this.maxHand !== 0) return ['The hand is incomplete'];
         //check if hand is a special hand
         let specialHands = [this.sevenPairs, this.thirteenOrphans, this.nineGate]
         specialHands.forEach((fun)=>{
@@ -223,9 +290,8 @@ class Game{
                 this.scoreName.push(fun.name)
             }
         })
-        //check if hand can be hu
+        if(this.scoreName > 0) return this.scoreName;
 
-        //find all score name from hand
         //check suits score: pureSuit, mixSuit, and allHonorSuit, greatWind, littleDragon, littleWind, greatDragon, pureGreen
         let suitScore = [this.pureSuit]
         suitScore.forEach((fun)=>{
@@ -233,6 +299,11 @@ class Game{
                 this.scoreName.push(fun.name)
             }
         })
+
+        if(this.scoreName.includes(this.sevenPairs.name)) return this.scoreName;
+        //check if hand can be hu
+
+        //find all score name from hand
 
 
 

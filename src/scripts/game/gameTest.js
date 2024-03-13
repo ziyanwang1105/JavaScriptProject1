@@ -82,24 +82,24 @@ g = new Game(tiles)
 ///check score evaluation
 
 //thirteen orphans hand
-let thirteen = []
-suits.forEach((suit)=>{
-  let one = new Tile(suit, 1)
-  let nine = new Tile(suit, 9)
-  thirteen.push(one)
-  thirteen.push(nine)
-})
-for(let honorSuit in honorSuits){
-  let honorTile = new Tile(honorSuits[honorSuit], 0);
-  thirteen.push(honorTile);
-}
-thirteen.forEach((el)=>{
-  g.addTile(el)
-})
-g.addTile(new Tile('c', 1))
-console.log(g.handToString())
-console.log(g.hu)
-console.log(g.checkScore())
+// let thirteen = []
+// suits.forEach((suit)=>{
+//   let one = new Tile(suit, 1)
+//   let nine = new Tile(suit, 9)
+//   thirteen.push(one)
+//   thirteen.push(nine)
+// })
+// for(let honorSuit in honorSuits){
+//   let honorTile = new Tile(honorSuits[honorSuit], 0);
+//   thirteen.push(honorTile);
+// }
+// thirteen.forEach((el)=>{
+//   g.addTile(el)
+// })
+// g.addTile(new Tile('c', 1))
+// console.log(g.handToString())
+// console.log(g.hu)
+// console.log(g.checkScore())
 //7 pair hand
 // for(let i = 0; i < 2; i++){
 //   g.addTile(a1)
@@ -113,7 +113,11 @@ console.log(g.checkScore())
 // console.log(g.handToString())
 // console.log(g.hu)
 // console.log(g.sevenPairs())
-// console.log(g.suitCount)
+
+// //check if the alleye function work with 7 pair
+// console.log(g.allEye())
+// console.log(g.hands)
+// console.log(g.remainingHand(g.hands, 0, 2))
 
 // //pure suit hand and nine Gate hand
 // for(let i = 1; i < 10; i++){
@@ -128,3 +132,18 @@ console.log(g.checkScore())
 // console.log(g.hu)
 // console.log(g.pureSuit())
 // console.log(g.nineGate())
+
+
+//check validHu function
+for(let i=0; i<3 ;i++){
+  g.addTile(new Tile('b', 1))
+  g.addTile(new Tile('b', 2))
+  g.addTile(new Tile('b', 3))
+  g.addTile(new Tile('b', 4))
+}
+for(let i=0; i<2 ;i++){
+  g.addTile(new Tile('b', 5))
+
+}
+console.log(g.handToString())
+console.log(g.validHu())

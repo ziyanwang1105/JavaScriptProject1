@@ -13,12 +13,20 @@ class Tile{
 
     equal(tile){
         //return true if the tile has same number and suit
-        return this.suit === tile.suit && this.number === tile.number
+        return this.toString() === tile.toString()
     }
     connect(tile){
         //return true if the tile can connect as a triplet sequence
         const numDiff = Math.abs(this.number - tile.number)
         return this.suit === tile.suit && numDiff < 2 && numDiff > 0
+    }
+    eye(){
+        //return the eye array of tile
+        let result = []
+        for(let i =0; i < 2; i++){
+            result.push(new Tile(this.suit, this.number))
+        }
+        return result
     }
     meld(method){
         //return the meld array of tile based on the method

@@ -128,6 +128,7 @@ class View {
             li.innerText = el
             scoreBoard.appendChild(li)
         })
+
     }
 
 
