@@ -210,28 +210,6 @@ class Game{
         return Object.values(sampleCount).every(el=> el === 0) && [0,1,9].includes(eye.number)
 
     }
-    //find all pair eyes in the hand and the first index where the eye locate in hand
-    allEye(){
-        let lens = this.hands.slice(0,2);
-        let result = {};
-        for(let i = 0; i < this.hands.length - 2; i++){
-            if(lens[0].equal(lens[1])){
-                let key = lens[0].toString()
-                if(!result[key]){
-                    result[key] = [i]
-                }
-            }
-            lens.shift();
-            lens.push(this.hands[i+2]);
-        }
-        if(lens[0].equal(lens[1])){
-            let key = lens[0].toString()
-            if(!result[key]){
-                result[key] = [this.hands.length - 1]
-            }
-        }
-        return result
-    }
 
     //check the triplet
     checkTriplet(array){
@@ -246,11 +224,26 @@ class Game{
         //to check if the rest of the hand can be constructed to all triplet of pong or sequence
         //when all tiles are formed accordingly, return the deconstruct hand for further score evaluation
         let handDeconstruct = [];
-        let eyes = this.allEye();
-        for(let key in eyes){
+        let handIndex = {}
+        this.hands.forEach((el, idx)=>{
+            if(handIndex[el.toString()]){
+                handIndex[el.toString()].push(idx)
+            }else{
+                handIndex[el.toString()] = [idx]
+            }
+        })
+        let possibleEyes = {}
+        for(let key in handIndex){
+            let value = handIndex[key]
+            if(value.length >1){
+                possibleEyes[key] = value[0]
+            }
+        }
+        console.log(possibleEyes)
+        for(let key in possibleEyes){
             //generate the remaining hand without the eye
             //check if remaining can form triplet of seq of pong
-            let el = eyes[key][0];
+            let el = possibleEyes[key];
             let remaining = [...this.hands]
             handDeconstruct.push(remaining.splice(el, 2))
             if(remaining.length % 3 !== 0) return false;
