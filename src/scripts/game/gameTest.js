@@ -138,12 +138,12 @@ g = new Game(tiles)
 for(let i=0; i<3 ;i++){
   g.addTile(new Tile('b', 1))
   g.addTile(new Tile('b', 2))
-  g.addTile(new Tile('b', 3))
-  g.addTile(new Tile('b', 4))
+  g.addTile(new Tile('b', 7))
+  g.addTile(new Tile('b', 6))
 }
 for(let i=0; i<2 ;i++){
-  g.addTile(new Tile('b', 5))
+  g.addTile(new Tile('b', 4))
 
 }
 console.log(g.handToString())
-console.log(g.validHu())
+console.log(g.checkScore())

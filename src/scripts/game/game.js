@@ -1,3 +1,4 @@
+const Tile = require("./tile");
 
 class Game{
     constructor(tiles){
@@ -255,9 +256,7 @@ class Game{
         let trueEye;
         let seen = [];
         for(let key in eyes){
-            console.log(key)
             let el = eyes[key][0];
-            console.log(el)
             let remaining = this.remainingHand([...this.hands], el, 2);
             //check if there is any triplet of pong in hand
             if(remaining.length % 3 !== 0) return false
@@ -272,19 +271,20 @@ class Game{
             }
 
 
-            //check if there is any triplet of sequence
+            //remove all pong in hand and check if there is any triplet of sequence
 
             //if all tiles are seen break the iteration
-            console.log(handDeconstruct)
             if(seen.length + 2 ===this.hands.length){
-                trueEye = key
-                handDeconstruct.push(key.eye)
+                trueEye = new Tile(key.slice(0,key.length - 1),Number(key[key.length-1]))
+                console.log(trueEye)
+                handDeconstruct.push(trueEye.eye())
+                break;
             }else{
                 seen = []
                 handDeconstruct = []
             }
         }
-        console.log(trueEye)
+        return handDeconstruct
 
 
     }
@@ -296,14 +296,14 @@ class Game{
     checkScore(){
 
         //reset score
-        this.scoreName = []
+        this.scoreName = [];
         //check if hand is incomplete
         if(!this.hu || this.maxHand !== 0) return ['The hand is incomplete'];
         //check if hand is a special hand
-        let specialHands = [this.sevenPairs, this.thirteenOrphans, this.nineGate]
+        let specialHands = [this.sevenPairs, this.thirteenOrphans, this.nineGate];
         specialHands.forEach((fun)=>{
             if (fun.call(this)){
-                this.scoreName.push(fun.name)
+                this.scoreName.push(fun.name);
             }
         })
         if(this.scoreName > 0) return this.scoreName;
@@ -312,15 +312,15 @@ class Game{
         let suitScore = [this.pureSuit]
         suitScore.forEach((fun)=>{
             if (fun.call(this)){
-                this.scoreName.push(fun.name)
+                this.scoreName.push(fun.name);
             }
         })
 
         if(this.scoreName.includes(this.sevenPairs.name)) return this.scoreName;
         //check if hand can be hu
-
+        let deconstruct = this.validHu();
         //find all score name from hand
-        return this.scoreName
+        if(deconstruct.length > 0) return this.scoreName;
     }
 }
 
