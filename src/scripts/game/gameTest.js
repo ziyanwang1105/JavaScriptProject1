@@ -136,6 +136,7 @@ g = new Game(tiles)
 
 
 //check validHu function
+// situation where everything in hand is pong
 for(let i=0; i<3 ;i++){
   g.addTile(new Tile('b', 1))
   g.addTile(new Tile('b', 2))
@@ -148,9 +149,10 @@ for(let i=0; i<2 ;i++){
 }
 console.log(g.handToString())
 console.log(g.checkScore())
-let a = []
-for(let i =1; i< 4; i++){
-  a.push(new Tile('c', i))
-}
 
-console.log(g.checkTriplet(a))
+// let a = []
+// for(let i =1; i< 4; i++){
+//   a.push(new Tile('c', i))
+// }
+
+// console.log(g.checkTriplet(a))

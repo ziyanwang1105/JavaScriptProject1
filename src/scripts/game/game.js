@@ -232,26 +232,12 @@ class Game{
         }
         return result
     }
-    remainingHand(hand, idx, sliceNum){
-        //pass in an eye/pong index and return the remaining hand
-        let result;
-
-            if(idx === 0){
-                result = hand.slice(sliceNum);
-            }else if(idx === hand.length - sliceNum + 1){
-                result = hand.slice(0, idx - 1);
-            }else{
-                result = hand.slice(0,idx).concat(hand.slice(idx + sliceNum, hand.length));
-            }
-
-        return result
-    }
 
     //check the triplet
     checkTriplet(array){
         if (array.every(ele=> ele.equal(array[0]))) return 'pong';
-        console.log(array.slice(1))
         if (array.slice(1).every(ele=> ele.connect(array[0]))) return 'chow';
+        return false
     }
 
     //check if the hand can hu
@@ -262,32 +248,46 @@ class Game{
         let handDeconstruct = [];
         let eyes = this.allEye();
         let trueEye;
-        let seen = [];
         for(let key in eyes){
+            //generate the remaining hand without the eye
+            //check if remaining can form triplet of seq of pong
             let el = eyes[key][0];
-            let remaining = this.remainingHand([...this.hands], el, 2);
-            //check if there is any triplet of pong in hand
-            if(remaining.length % 3 !== 0) return false
+            let remaining = [...this.hands]
+            remaining.splice(el, 2)
+            if(remaining.length % 3 !== 0) return false;
+
+            //check if there is any triplet of sequence in remaining
+
+            //check if there is any triplet of pong in remaining
+            let pongIndex = [];
+
             for(let i = 0; i < remaining.length / 3 ; i++){
                 let lens = remaining.slice(i * 3, (i+1) * 3)
                 if (this.checkTriplet(lens) === 'pong') {
                     handDeconstruct.push([...lens])
-                    lens.forEach((ele2)=>{
-                        seen.push(ele2)
-                    })
+                    pongIndex.push(i * 3);
                 }
+            }
+            //remove all pong in hand
+            for(let j = 0; j < pongIndex.length; j++){
+                let idx = pongIndex[j];
+                remaining.splice(idx, 3)
+                pongIndex = pongIndex.map((el)=> {
+                    if(el > idx){
+                        return el - 3
+                    } else{
+                        return el
+                    };
+                })
             }
 
 
-            //remove all pong in hand and check if there is any triplet of sequence
-
             //if all tiles are seen break the iteration
-            if(seen.length + 2 ===this.hands.length){
+            if(remaining.length === 0){
                 trueEye = this.hands[el]
                 handDeconstruct.push(trueEye.eye())
                 break;
             }else{
-                seen = []
                 handDeconstruct = []
             }
         }
