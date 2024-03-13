@@ -18,7 +18,8 @@ class Tile{
     connect(tile){
         //return true if the tile can connect as a triplet sequence
         const numDiff = Math.abs(this.number - tile.number)
-        return this.suit === tile.suit && numDiff < 2 && numDiff > 0
+        console.log(numDiff)
+        return this.suit === tile.suit && numDiff <= 2 && numDiff > 0
     }
     eye(){
         //return the eye array of tile

@@ -96,10 +96,11 @@ g = new Game(tiles)
 // thirteen.forEach((el)=>{
 //   g.addTile(el)
 // })
-// g.addTile(new Tile('c', 1))
+// g.addTile(new Tile('b', 9))
 // console.log(g.handToString())
 // console.log(g.hu)
 // console.log(g.checkScore())
+
 //7 pair hand
 // for(let i = 0; i < 2; i++){
 //   g.addTile(a1)
@@ -147,3 +148,9 @@ for(let i=0; i<2 ;i++){
 }
 console.log(g.handToString())
 console.log(g.checkScore())
+let a = []
+for(let i =1; i< 4; i++){
+  a.push(new Tile('c', i))
+}
+
+console.log(g.checkTriplet(a))

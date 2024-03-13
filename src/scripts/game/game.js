@@ -157,6 +157,7 @@ class Game{
         //check if the hand is a nine gate
         //speical hand in pure suit
         let sampleCount = {}
+        let eye;
         for(let i = 1; i < 10; i++){
             if(i === 1 || i ===9){
                 sampleCount[i] = 3
@@ -164,23 +165,24 @@ class Game{
                 sampleCount[i] = 1
             }
         }
-        sampleCount[this.hu.number] += 1
-        if(this.pureSuit()){
+        let suit = this.pureSuit()
+        if(suit){
             this.hands.forEach((el)=>{
                 let key = el.number
                 if(sampleCount[key]){
                     sampleCount[key] -=1
                 }else{
-                    sampleCount[key] = -1
+                    eye = el
                 }
             })
         }
-        return Object.values(sampleCount).every(el=> el === 0)
+        return Object.values(sampleCount).every(el=> el === 0) && suit === eye.suit
     }
 
     thirteenOrphans(){
         let suits=[];
         let honorSuits=[];
+        let eye;
         Object.keys(this.suitCount).forEach((el)=>{
             if(el.length > 1){
                 honorSuits.push(el)
@@ -196,16 +198,16 @@ class Game{
         honorSuits.forEach((ele)=>{
             sampleCount[`${ele}0`] = 1
         })
-        sampleCount[this.hu.toString()] +=1
         this.hands.forEach((el)=>{
             let key = el.toString()
             if(sampleCount[key]){
                 sampleCount[key] -=1
             }else{
-                sampleCount[key] = -1
+                eye = el
             }
         })
-        return Object.values(sampleCount).every(el=> el === 0)
+
+        return Object.values(sampleCount).every(el=> el === 0) && [0,1,9].includes(eye.number)
 
     }
     //find all pair eyes in the hand and the first index where the eye locate in hand
@@ -231,7 +233,7 @@ class Game{
         return result
     }
     remainingHand(hand, idx, sliceNum){
-        //pass in an eye index and return the remaining hand
+        //pass in an eye/pong index and return the remaining hand
         let result;
 
             if(idx === 0){
@@ -243,6 +245,13 @@ class Game{
             }
 
         return result
+    }
+
+    //check the triplet
+    checkTriplet(array){
+        if (array.every(ele=> ele.equal(array[0]))) return 'pong';
+        console.log(array.slice(1))
+        if (array.slice(1).every(ele=> ele.connect(array[0]))) return 'chow';
     }
 
     //check if the hand can hu
@@ -261,7 +270,7 @@ class Game{
             if(remaining.length % 3 !== 0) return false
             for(let i = 0; i < remaining.length / 3 ; i++){
                 let lens = remaining.slice(i * 3, (i+1) * 3)
-                if (lens.every(ele=> ele.equal(lens[0]))) {
+                if (this.checkTriplet(lens) === 'pong') {
                     handDeconstruct.push([...lens])
                     lens.forEach((ele2)=>{
                         seen.push(ele2)
@@ -274,8 +283,7 @@ class Game{
 
             //if all tiles are seen break the iteration
             if(seen.length + 2 ===this.hands.length){
-                trueEye = new Tile(key.slice(0,key.length - 1),Number(key[key.length-1]))
-                console.log(trueEye)
+                trueEye = this.hands[el]
                 handDeconstruct.push(trueEye.eye())
                 break;
             }else{
@@ -319,7 +327,12 @@ class Game{
         //check if hand can be hu
         let deconstruct = this.validHu();
         //find all score name from hand
-        if(deconstruct.length > 0) return scoreName;
+        if(deconstruct.length > 0) {
+            scoreName.push('hu')
+            return scoreName
+        }else{
+            return ['Invalid winning hand']
+        }
     }
 }
 
