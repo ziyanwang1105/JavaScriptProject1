@@ -139,11 +139,8 @@ class Game{
     //Special hand detection
     sevenPairs(){
         //check if all tiles are in hand and they all comes in pair
-        if (Object.values(this.tileCount).every(el=>el === 2 || el === 0) && Object.values(this.melds).every(el => el.length === 0)){
-            if(this.pureSuit()) this.scoreName.push(this.pureSuit.name)
-            return true
-        }
-        return false
+        return Object.values(this.tileCount).every(el=>el === 2 || el === 0) && Object.values(this.melds).every(el => el.length === 0)
+
     }
 
     pureSuit(){
@@ -238,13 +235,10 @@ class Game{
         let result;
 
             if(idx === 0){
-                console.log('first')
                 result = hand.slice(sliceNum);
             }else if(idx === hand.length - sliceNum + 1){
-                console.log('last')
                 result = hand.slice(0, idx - 1);
             }else{
-                console.log('here')
                 result = hand.slice(0,idx).concat(hand.slice(idx + sliceNum, hand.length));
             }
 
@@ -259,19 +253,38 @@ class Game{
         let handDeconstruct = [];
         let eyes = this.allEye();
         let trueEye;
+        let seen = [];
         for(let key in eyes){
             console.log(key)
             let el = eyes[key][0];
             console.log(el)
             let remaining = this.remainingHand([...this.hands], el, 2);
             //check if there is any triplet of pong in hand
+            if(remaining.length % 3 !== 0) return false
+            for(let i = 0; i < remaining.length / 3 ; i++){
+                let lens = remaining.slice(i * 3, (i+1) * 3)
+                if (lens.every(ele=> ele.equal(lens[0]))) {
+                    handDeconstruct.push([...lens])
+                    lens.forEach((ele2)=>{
+                        seen.push(ele2)
+                    })
+                }
+            }
+
 
             //check if there is any triplet of sequence
 
             //if all tiles are seen break the iteration
-
+            console.log(handDeconstruct)
+            if(seen.length + 2 ===this.hands.length){
+                trueEye = key
+                handDeconstruct.push(key.eye)
+            }else{
+                seen = []
+                handDeconstruct = []
+            }
         }
-
+        console.log(trueEye)
 
 
     }
@@ -281,6 +294,9 @@ class Game{
     //based on the type of sets on hand and melds there are more score calculated
 
     checkScore(){
+
+        //reset score
+        this.scoreName = []
         //check if hand is incomplete
         if(!this.hu || this.maxHand !== 0) return ['The hand is incomplete'];
         //check if hand is a special hand
@@ -304,9 +320,6 @@ class Game{
         //check if hand can be hu
 
         //find all score name from hand
-
-
-
         return this.scoreName
     }
 }

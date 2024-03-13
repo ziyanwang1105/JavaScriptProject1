@@ -126,6 +126,7 @@ class View {
         result.forEach((el)=>{
             let li = document.createElement("li")
             li.innerText = el
+            li.setAttribute('score_name', el)
             scoreBoard.appendChild(li)
         })
 
