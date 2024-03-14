@@ -82,8 +82,8 @@ class Game{
         //return the list of tile that can be added to based on the meld type
         let method = this.checkMeld();
         let result = []
+        if(this.maxHand === 0) return result;
         if(method === 'hand'){
-            if(this.maxHand === 0) return result;
             this.tiles.forEach((tile)=>{
                 if(this.tileCount[tile.toString()] + 1 <=4){
                     result.push(tile.toString());
