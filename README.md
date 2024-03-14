@@ -12,8 +12,7 @@ The application will have a page to let user to generate his/her winning hand, b
 - construct their winning hand by choosing the tiles
 - have a button to submit the hand to evaluate if it is a winning hand or not
 - identify some speical hand
-- have a setting button to get into a setting interface to customize scoring points rules
-- clear the hand
+- Reset the hand
 
 # In addition, this project will include:
 - A production README
