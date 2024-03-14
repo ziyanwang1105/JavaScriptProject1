@@ -95,7 +95,9 @@ h1{
     font-weight: bold;
 
 }
-
+.scores > li{
+    font-size: 30;
+}
 #footer {
     left: 0;
     bottom: 0;

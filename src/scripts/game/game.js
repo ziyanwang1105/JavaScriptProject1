@@ -378,7 +378,7 @@ class Game{
         let deconstruct = this.validHu();
         //find all score name from hand
         if(deconstruct.length > 0) {
-            scoreName.push('hu')
+            scoreName.push('Valid Hu')
             return scoreName
         }else{
             return ['Invalid winning hand']
