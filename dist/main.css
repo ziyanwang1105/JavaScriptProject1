@@ -47,6 +47,12 @@ table {
 	border-spacing: 0;
 }
 
+html{
+    text-align: center;
+    background-color: rgb(2, 41, 2);
+    color: whitesmoke;
+}
+
 .tiles{
     display: inline-flex;
     flex-wrap: wrap;
@@ -66,6 +72,23 @@ table {
     display: inline-flex;
     flex-wrap: wrap;
 
+}
+h1{
+    margin: auto;
+    width: 50%;
+    border: 10px solid green;
+    padding: 10px;
+    font-family: Arial;
+    font-weight: bold;
+
+}
+.meld_button:focus{
+    background-color: red;
+}
+#footer {
+    left: 0;
+    bottom: 0;
+    width: 100%;
 }
 
 

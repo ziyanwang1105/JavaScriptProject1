@@ -4,12 +4,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mahjong score calculator</title>
     <link rel="stylesheet" href="./dist/main.css" />
+    <link rel="icon"  href="./assets/favicon.ico">
     <script src="./dist/main.js"></script>
 
 </head>
 <body>
     <div id="menu_bar">
-        <button onClick="window.location.reload();">Reset Hand</button>
+
     </div>
     <div id="calculator">
         <h1>Mahjong Calculator</h1>
@@ -18,6 +19,8 @@
         </div>
         <div id="hand">
             <h2>Hand</h2>
+            <button onClick="window.location.reload();">Reset Hand</button>
+            <br>
             <ul class="hands"></ul>
         </div>
         <div id="meld">
@@ -25,10 +28,10 @@
             <ul class="melds"></ul>
             <div id="meld_type">
                 <h3>Meld Type:</h3>
-                <button id="pong">Pong</button>
-                <button id="kong">Kong</button>
-                <button id="closed_kong">Cloesed Kong</button>
-                <button id="chow">Chow</button>
+                <button class = 'meld_button' id="pong">Pong</button>
+                <button class = 'meld_button' id="kong">Kong</button>
+                <button class = 'meld_button' id="closed_kong">Cloesed Kong</button>
+                <button class = 'meld_button' id="chow">Chow</button>
             </div>
         </div>
         <div id="calculate_result">
