@@ -58,3 +58,58 @@ h2{
 strong{
     font-weight: bold;
 }
+
+.box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.box a {
+    display: inline-block;
+    padding: 15px;
+    border-radius: 3px;
+    color:white;
+}
+
+.modal {
+    align-items: center;
+    margin: 10%auto;
+    width: 40%;
+    height: fit-content;
+    padding: 20px;
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgb(76, 12, 136);
+    transition: all 0.4s;
+    visibility: hidden;
+    opacity: 0;
+}
+.modal > ul{
+    text-align: left;
+    list-style: circle;
+}
+.modal:target {
+    visibility: visible;
+    opacity: 1;
+}
+
+.box-close {
+    position: absolute;
+    top: 0;
+    right: 15px;
+    color: #fe0606;
+    text-decoration: none;
+    font-size: 30px;
+}
+.about {
+    position: absolute;
+    background: white;
+    width: 400px;
+    padding: 1em 2em;
+    border-radius: 4px;
+}
