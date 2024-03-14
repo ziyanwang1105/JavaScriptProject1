@@ -1,3 +1,6 @@
+/*!****************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/styles/reset.css ***!
+  \****************************************************************************************************/
 /* http://meyerweb.com/eric/tools/css/reset/
    v2.0 | 20110126
    License: none (public domain)
@@ -47,10 +50,20 @@ table {
 	border-spacing: 0;
 }
 
+/*!******************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/styles/mahjong.css ***!
+  \******************************************************************************************************/
 html{
     text-align: center;
     background-color: rgb(2, 41, 2);
     color: whitesmoke;
+}
+#menu_bar{
+    display: block;
+    justify-content:flex-start;
+}
+.click_icon{
+    filter: invert(100%) sepia(0%) saturate(7427%) hue-rotate(63deg) brightness(118%) contrast(101%);
 }
 
 .tiles{
@@ -82,15 +95,14 @@ h1{
     font-weight: bold;
 
 }
-.meld_button:focus{
-    background-color: red;
-}
+
 #footer {
     left: 0;
     bottom: 0;
     width: 100%;
 }
 
+/*!*************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/sass-loader/dist/cjs.js!./src/index.scss ***!
+  \*************************************************************************************************************************************/
 
-
-/*# sourceMappingURL=main.css.map*/

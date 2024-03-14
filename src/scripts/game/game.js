@@ -15,7 +15,7 @@ class Game{
         this.maxHand = 14;
         this.melds = {'chow':[], 'pong': [], 'kong': [], 'closed_kong': []};
         this.hu
-        this.meldTypes = {'chow': false, 'pong': false, 'kong': false, 'closed_kong': false};
+        this.meldTypes = {'pong': false, 'kong': false, 'closed_kong': false, 'chow': false};
         this.tileCount = {};
         this.tiles.forEach((tile)=>{
             this.tileCount[tile.toString()] = 0

@@ -3,6 +3,13 @@ html{
     background-color: rgb(2, 41, 2);
     color: whitesmoke;
 }
+#menu_bar{
+    display: block;
+    justify-content:flex-start;
+}
+.click_icon{
+    filter: invert(100%) sepia(0%) saturate(7427%) hue-rotate(63deg) brightness(118%) contrast(101%);
+}
 
 .tiles{
     display: inline-flex;
@@ -33,9 +40,7 @@ h1{
     font-weight: bold;
 
 }
-.meld_button:focus{
-    background-color: red;
-}
+
 #footer {
     left: 0;
     bottom: 0;
