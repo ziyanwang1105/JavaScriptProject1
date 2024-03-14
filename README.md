@@ -10,12 +10,14 @@ The application will have a page to let user to generate his/her winning hand, b
 
 In this Mahjong calculator, users will be able to:
 - construct their winning hand by choosing the tiles
-- have a button to submit the winning hand to calculate the score
+- have a button to submit the hand to evaluate if it is a winning hand or not
+- identify some speical hand
 - have a setting button to get into a setting interface to customize scoring points rules
 - clear the hand
 
 In addition, this project will include:
-- Detect speical combination of winning hand(eg. seven pairs, Thirteen orphans, etc.)
+- Calculate the score that the winning hand can get
+- Add the form to submit the winning situation(wind of the game, win from stealing kong, etc.)
 - Have default setting for some popular Mahjong rules
 
 

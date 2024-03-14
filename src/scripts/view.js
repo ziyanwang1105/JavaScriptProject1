@@ -35,8 +35,10 @@ class View {
         let tiles = document.querySelectorAll('.tiles > li')
         tiles.forEach((ele)=>{
             ele.removeEventListener('click', this.clickTile)
+            ele.setAttribute('status', 'unclickable')
             if(clickable.includes(ele.className)){
                 ele.addEventListener('click', this.clickTile);
+                ele.setAttribute('status', 'clickable')
             }
         })
     }
@@ -115,7 +117,6 @@ class View {
         let method = e.target.getAttribute("id")
         this.game.meldSwitch(method)
         let methods = Object.values(this.game.meldTypes)
-        console.log(methods)
         let buttons = document.querySelectorAll('#meld_type > button')
         for(let i = 0; i < 4; i++){
             if(methods[i]){

@@ -65,6 +65,7 @@ class Game{
     }
 
     checkMeld(){
+        //return the meld type currently on
         let method;
         if(Object.values(this.meldTypes).every(el=> !el)){
             method = 'hand';
@@ -118,6 +119,7 @@ class Game{
     }
 
     tileCompare(tile1, tile2){
+        //order the tile by the index of the tile in this.tiles
         let idx1;
         let idx2;
         this.tiles.forEach((tile, index)=>{
@@ -238,7 +240,7 @@ class Game{
 
 
 
-        //try find triplet sequence unitl there is no index count < 3
+        //try find triplet sequence unitl every tile is seen
         let copy = [...array]
         let deconstruct = []
         let count = array.length / 3
@@ -269,16 +271,6 @@ class Game{
         return deconstruct
     }
 
-    trueEye(){
-        let handIndex = this.arrayIndex(this.hands)
-        let possibleEyes = {}
-        for(let key in handIndex){
-            let value = handIndex[key]
-            if(value.length > 1){
-                possibleEyes[key] = value[0]
-            }
-        }
-    }
 
     //check if the hand can hu
     validHu(){

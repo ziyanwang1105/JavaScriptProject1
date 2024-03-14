@@ -48,3 +48,6 @@ h1{
     bottom: 0;
     width: 100%;
 }
+[status = 'unclickable']{
+    opacity: 50%;
+}
