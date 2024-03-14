@@ -22,7 +22,7 @@ class View {
             let li = document.createElement("li");
             li.setAttribute("class", `${el.toString()}`);
             let img = document.createElement("img");
-            img.setAttribute("src",`../img/64/fulltiles/${index}.png`);
+            img.setAttribute("src",`../assets/img/64/fulltiles/${index}.png`);
             img.setAttribute("tile_index", index);
             li.appendChild(img);
             ul.appendChild(li);
@@ -71,7 +71,7 @@ class View {
                 li.setAttribute("class", `${ele.toString()}`);
                 let index = this.tile.indexOf(ele)
                 let img = document.createElement("img");
-                img.setAttribute("src",`../img/64/fulltiles/${index}.png`);
+                img.setAttribute("src",`../assets/img/64/fulltiles/${index}.png`);
                 li.setAttribute("tile_index", index);
                 li.appendChild(img);
                 hands.append(li);
@@ -92,7 +92,7 @@ class View {
                     if(ele2.equal(ele)) index = i;
                 })
                 let img = document.createElement("img");
-                img.setAttribute("src",`../img/64/fulltiles/${index}.png`);
+                img.setAttribute("src",`../assets/img/64/fulltiles/${index}.png`);
                 li.setAttribute("tile_index", index);
                 li.appendChild(img);
                 ul.appendChild(li);
