@@ -15,10 +15,12 @@ In this Mahjong calculator, users will be able to:
 - have a setting button to get into a setting interface to customize scoring points rules
 - clear the hand
 
-In addition, this project will include:
+Future improvment in functionality:
 - Calculate the score that the winning hand can get
 - Add the form to submit the winning situation(wind of the game, win from stealing kong, etc.)
 - Have default setting for some popular Mahjong rules
+- remove tile from hand or meld by clicking the tile
+
 
 
 ## Wire Frame
