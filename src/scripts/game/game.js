@@ -150,7 +150,7 @@ class Game{
 
         for(let ele in this.suitCount){
             let value = this.suitCount[ele]
-            if(value === 14) return ele
+            if(value >= 14) return ele
         }
         return false
     }
