@@ -8,13 +8,13 @@ The application will have a page to let user to generate his/her winning hand, b
 
 ## Functionality & MVPs
 
-# In this Mahjong calculator, users will be able to:
+### In this Mahjong calculator, users will be able to:
 - construct their winning hand by choosing the tiles
 - have a button to submit the hand to evaluate if it is a winning hand or not
 - identify some speical hand
 - Reset the hand
 
-# In addition, this project will include:
+### In addition, this project will include:
 - A production README
 - An About modal explaining how to use the tool
 
