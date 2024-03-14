@@ -250,7 +250,7 @@ class Game{
             let indexFlatten = Object.values(arrayIndx).flat()
             possibleSeq.push(indexFlatten.find((el)=>selectTile.connectOne(array[el])))
             possibleSeq.push(indexFlatten.find((el)=>selectTile.connectTwo(array[el])))
-            if(possibleSeq.every(el=> el !== -1)){
+            if(possibleSeq.every(el=> typeof el !== 'undefined')){
                 deconstruct.push(possibleSeq)
                 count -=1
                 possibleSeq.forEach((el)=>{
@@ -290,7 +290,7 @@ class Game{
         let possibleEyes = {}
         for(let key in handIndex){
             let value = handIndex[key]
-            if(value.length ===2){
+            if(value.length >1){
                 possibleEyes[key] = value[0]
             }
         }
@@ -343,7 +343,7 @@ class Game{
         }
 
 
-
+        return handDeconstruct
     }
     //Generic hand detection
     //check special hand before everything

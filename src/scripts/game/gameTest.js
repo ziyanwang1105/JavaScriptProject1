@@ -151,17 +151,16 @@ g = new Game(tiles)
 // console.log(g.handToString())
 // console.log(g.checkScore())
 
-for(let i=0; i<3; i++){
-  g.addTile(new Tile('b', 3))
-  g.addTile(new Tile('b', 4))
+for(let i=4; i<10; i++){
+  g.addTile(new Tile('b', i))
+
 }
 for(let i = 0; i < 2; i++){
-  g.addTile(new Tile('b', 2))
+  g.addTile(new Tile('c', 1))
   g.addTile(new Tile('c', 2))
-  g.addTile(new Tile('b', 5))
+  g.addTile(new Tile('c', 3))
+  g.addTile(new Tile('d', 1))
 }
-g.addTile(new Tile('b', 1))
-g.addTile(new Tile('b', 6))
 console.log(g.handToString())
 console.log(g.checkScore())
 // let a = []
