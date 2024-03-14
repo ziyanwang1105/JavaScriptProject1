@@ -19,7 +19,7 @@ The application will have a page to let user to generate his/her winning hand, b
 - An About modal explaining how to use the tool
 
 ## Wire Frame
-[https://wireframe.cc/1MyPGK]
+![Wire Frame](./assets/wireframe.png "https://wireframe.cc/1MyPGK")
 ## Technology, Library, and APIs
 - Webpack and Babel to bundle and transpile the source Javascript
 - npm to manage project dependency
