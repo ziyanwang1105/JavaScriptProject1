@@ -20,13 +20,14 @@ class Tile{
         const numDiff = Math.abs(this.number - tile.number)
         return this.suit === tile.suit && numDiff <= 2 && numDiff > 0
     }
-    eye(){
-        //return the eye array of tile
-        let result = []
-        for(let i =0; i < 2; i++){
-            result.push(new Tile(this.suit, this.number))
-        }
-        return result
+    connectOne(tile){
+        const numDiff = Math.abs(this.number - tile.number)
+        return this.suit === tile.suit && numDiff === 1
+    }
+
+    connectTwo(tile){
+        const numDiff = Math.abs(this.number - tile.number)
+        return this.suit === tile.suit && numDiff === 2
     }
     meld(method){
         //return the meld array of tile based on the method

@@ -213,9 +213,71 @@ class Game{
 
     //check the triplet
     checkTriplet(array){
+        //check if array is pong
         if (array.every(ele=> ele.equal(array[0]))) return 'pong';
-        if (array.slice(1).every(ele=> ele.connect(array[0]))) return 'chow';
+        //check if array is chow, needs to be sorted
+        let one = array[0]
+        if(one.connectOne(array[1]) && one.connectTwo(array[2])) return 'chow'
         return false
+    }
+
+    //generate array Index
+    arrayIndex(array){
+        let arrayIndx = {};
+        array.forEach((el, idx)=>{
+            if(arrayIndx[el.toString()]){
+                arrayIndx[el.toString()].push(idx);
+            }else{
+                arrayIndx[el.toString()] = [idx];
+            }
+        })
+        return arrayIndx
+    }
+    //check the remaining hand without eye for triplet sequence
+    checkRemaining(array){
+
+
+
+        //try find triplet sequence unitl there is no index count < 3
+        let copy = [...array]
+        let deconstruct = []
+        let count = array.length / 3
+        let arrayIndx = this.arrayIndex(copy)
+        while(!Object.values(arrayIndx).every(el1=> el1.length=== 3) && count !== 0){
+            let possibleTile = Object.values(arrayIndx).reduceRight((a,b)=>(a.length < b.length) ? a : b)
+            let possibleSeq = [possibleTile[0]]
+            let selectTile = array[possibleSeq[0]]
+            let indexFlatten = Object.values(arrayIndx).flat()
+            possibleSeq.push(indexFlatten.find((el)=>selectTile.connectOne(array[el])))
+            possibleSeq.push(indexFlatten.find((el)=>selectTile.connectTwo(array[el])))
+            if(possibleSeq.every(el=> el !== -1)){
+                deconstruct.push(possibleSeq)
+                count -=1
+                possibleSeq.forEach((el)=>{
+                    //update arrayIndx
+                    arrayIndx[copy[el].toString()].shift();
+                })
+                if(count === 0) return deconstruct
+            }else{
+                arrayIndx[copy[possibleSeq[0]].toString()].shift();
+            }
+            Object.keys(arrayIndx).forEach((el)=>{
+                if(arrayIndx[el].length === 0) delete arrayIndx[el]
+            })
+        }
+
+        return deconstruct
+    }
+
+    trueEye(){
+        let handIndex = this.arrayIndex(this.hands)
+        let possibleEyes = {}
+        for(let key in handIndex){
+            let value = handIndex[key]
+            if(value.length > 1){
+                possibleEyes[key] = value[0]
+            }
+        }
     }
 
     //check if the hand can hu
@@ -224,33 +286,31 @@ class Game{
         //to check if the rest of the hand can be constructed to all triplet of pong or sequence
         //when all tiles are formed accordingly, return the deconstruct hand for further score evaluation
         let handDeconstruct = [];
-        let handIndex = {}
-        this.hands.forEach((el, idx)=>{
-            if(handIndex[el.toString()]){
-                handIndex[el.toString()].push(idx)
-            }else{
-                handIndex[el.toString()] = [idx]
-            }
-        })
+        let handIndex = this.arrayIndex(this.hands)
         let possibleEyes = {}
         for(let key in handIndex){
             let value = handIndex[key]
-            if(value.length >1){
+            if(value.length ===2){
                 possibleEyes[key] = value[0]
             }
         }
-        console.log(possibleEyes)
         for(let key in possibleEyes){
             //generate the remaining hand without the eye
             //check if remaining can form triplet of seq of pong
             let el = possibleEyes[key];
-            let remaining = [...this.hands]
-            handDeconstruct.push(remaining.splice(el, 2))
-            if(remaining.length % 3 !== 0) return false;
+            let remaining = [...this.hands];
+            handDeconstruct.push(remaining.splice(el, 2));
+            let seq = this.checkRemaining(remaining)
+            //append deconstruct hand
+            seq.forEach((el)=>{
+                handDeconstruct.push(el.map(el=>remaining[el]))
+            })
+            //delete all seq from remaining
+            seq.flat().sort().forEach((el,idx)=>{
+                let decrease = el-idx;
+                remaining.splice(decrease, 1);
+            })
 
-            //check if there is any triplet of sequence in remaining
-
-            //check if there is any triplet of pong in remaining
             let pongIndex = [];
 
             for(let i = 0; i < remaining.length / 3 ; i++){

@@ -137,18 +137,52 @@ g = new Game(tiles)
 
 //check validHu function
 // situation where everything in hand is pong
-for(let i=0; i<3 ;i++){
-  g.addTile(new Tile('b', 1))
-  g.addTile(new Tile('b', 2))
-  g.addTile(new Tile('b', 7))
-  g.addTile(new Tile('b', 6))
-}
-for(let i=0; i<2 ;i++){
-  g.addTile(new Tile('b', 4))
 
+// for(let i=0; i<3 ;i++){
+//   g.addTile(new Tile('b', 1))
+//   g.addTile(new Tile('b', 2))
+//   g.addTile(new Tile('b', 7))
+//   g.addTile(new Tile('b', 6))
+// }
+// for(let i=0; i<2 ;i++){
+//   g.addTile(new Tile('b', 4))
+
+// }
+// console.log(g.handToString())
+// console.log(g.checkScore())
+
+for(let i=0; i<3; i++){
+  g.addTile(new Tile('b', 3))
+  g.addTile(new Tile('b', 4))
 }
+for(let i = 0; i < 2; i++){
+  g.addTile(new Tile('b', 2))
+  g.addTile(new Tile('c', 2))
+  g.addTile(new Tile('b', 5))
+}
+g.addTile(new Tile('b', 1))
+g.addTile(new Tile('b', 6))
 console.log(g.handToString())
 console.log(g.checkScore())
+// let a = []
+// a.push(new Tile('b', 1))
+// for(let i = 0; i < 3; i++){
+//   a.push(new Tile('b', 2))
+// }
+// for(let i=0; i<2 ;i++){
+//   a.push(new Tile('b', 4))
+// }
+
+// for(let i = 0; i < 3; i++){
+//   a.push(new Tile('b', 6))
+//   a.push(new Tile('b', 7))
+// }
+
+// console.log(a)
+// let b = g.checkRemaining(a, [])
+// console.log(b)
+
+
 
 // let a = []
 // for(let i =1; i< 4; i++){
